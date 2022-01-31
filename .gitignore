@@ -1,0 +1,8 @@
+# vars for execution from local machine
+secret.tfvars
+
+# auto-provided terraform files
+.terraform
+*.backup
+terraform.auto.tfvars
+terraform.tfvars
