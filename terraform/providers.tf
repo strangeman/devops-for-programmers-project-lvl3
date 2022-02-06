@@ -12,7 +12,7 @@ terraform {
 }
 
 variable "do_token" {}
-variable "pvt_key" {}
+# variable "ssh_private_key" {}
 variable "cloudflare_email" {}
 variable "cloudflare_api_token" {}
 
