@@ -1,0 +1,30 @@
+- name: Install pip and setup redmine
+  hosts: all
+  tasks:
+    - name: Update apt cache (pip role doesn't do it)
+      apt:
+        update_cache: true
+        cache_valid_time: 600
+    - name: Install pip
+      include_role:
+        name: geerlingguy.pip
+      tags: [pip, install]
+    - name: Create env file
+      template:
+        src: env.j2
+        dest: '.env'
+        mode: 0400
+      tags: [redmine, install]
+    - name: Launch redmine container
+      community.docker.docker_container:
+        name: redmine-app
+        image: redmine:{{ redmine_version }}
+        env_file: .env
+        ports: "{{ redmine_host_port }}:3000"
+        restart_policy: always
+        restart: true
+        pull: true
+      tags: [redmine, install]
+  roles:
+    - role: datadog.datadog
+      tags: [datadog, install]

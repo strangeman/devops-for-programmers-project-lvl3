@@ -1,0 +1,21 @@
+redmine_host_port: "3000"
+redmine_version: "4.2.3"
+
+pip_install_packages: ["docker"]
+
+datadog_site: "datadoghq.eu"
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: check_redmine_status
+        url: "http://localhost:{{ redmine_host_port }}"
+        timeout: 5
+        method: GET
+
+# sensitive
+redmine_db_password: "will be filled by TerraForm"
+redmine_db_port: "will be filled by TerraForm"
+redmine_db_host: "will be filled by TerraForm"
+redmine_db_username: "will be filled by TerraForm"
+redmine_db_name: "will be filled by TerraForm"
