@@ -6,7 +6,7 @@ resource "digitalocean_certificate" "cert" {
 
 resource "digitalocean_loadbalancer" "public" {
   name   = "${var.general_project_name}-lb"
-  region = "${var.do_region}"
+  region = var.do_region
 
   forwarding_rule {
     entry_port     = 443

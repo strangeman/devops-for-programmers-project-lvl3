@@ -1,7 +1,7 @@
 resource "cloudflare_record" "domain" {
-  zone_id = "${var.cloudflare_zone_id}"
-  name    = "${var.general_project_name}"
-  value   = "${digitalocean_loadbalancer.public.ip}"
+  zone_id = var.cloudflare_zone_id
+  name    = var.general_project_name
+  value   = digitalocean_loadbalancer.public.ip
   type    = "A"
   ttl     = 1
 
