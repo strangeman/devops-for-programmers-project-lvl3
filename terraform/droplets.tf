@@ -20,7 +20,7 @@ resource "digitalocean_droplet" "backends" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' -e 'redmine_db_host=${digitalocean_database_cluster.postgres.host}' -e 'redmine_db_port=${digitalocean_database_cluster.postgres.port}' -e 'redmine_db_username=${digitalocean_database_cluster.postgres.user}' -e 'redmine_db_name=${digitalocean_database_cluster.postgres.database}' -e 'redmine_db_password=${digitalocean_database_cluster.postgres.password}' -e 'datadog_api_key=${var.datadog_api_key}' --private-key ${var.pvt_key} ../ansible/playbook.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},'  -e 'redmine_host_port=${var.general_application_port}' -e 'redmine_db_host=${digitalocean_database_cluster.postgres.host}' -e 'redmine_db_port=${digitalocean_database_cluster.postgres.port}' -e 'redmine_db_username=${digitalocean_database_cluster.postgres.user}' -e 'redmine_db_name=${digitalocean_database_cluster.postgres.database}' -e 'redmine_db_password=${digitalocean_database_cluster.postgres.password}' -e 'datadog_api_key=${var.datadog_api_key}' --private-key ${var.pvt_key} ../ansible/playbook.yml"
   }
 }
 output "droplet_ip_addresses" {

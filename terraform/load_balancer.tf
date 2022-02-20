@@ -12,14 +12,14 @@ resource "digitalocean_loadbalancer" "public" {
     entry_port     = 443
     entry_protocol = "https"
 
-    target_port     = 5000
+    target_port     = var.general_application_port
     target_protocol = "http"
 
     certificate_name = digitalocean_certificate.cert.name
   }
 
   healthcheck {
-    port     = 5000
+    port     = var.general_application_port
     protocol = "tcp"
   }
 

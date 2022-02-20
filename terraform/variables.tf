@@ -7,6 +7,10 @@ variable "general_domain" {
   default = "devops-lvl3.strangeman.info"
 }
 
+variable "general_application_port" {
+  default = 3000
+}
+
 # DigitalOcean general
 variable "do_region" {
   default = "ams3"
